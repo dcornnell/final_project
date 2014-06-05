@@ -1,0 +1,11 @@
+%h1
+	= @route.name
+
+%h2
+	= grade_format(@route.grade,@route.modifier)
+%p
+
+	= @route.score
+
+= link_to "edit this route", edit_route_path
+= link_to "delete this route", route_path, :method => "delete"
