@@ -1,7 +1,6 @@
 class Route < ActiveRecord::Base
 validates_presence_of :score, :grade,  :modifier
-
-
+has_many :attempts
 
 def calculate_grade(level, modifier)
 	@grade = level + 1
