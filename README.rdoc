@@ -1,0 +1,6 @@
+== README
+
+Super Basic User create and log in done stuff to make it better
+	-Roles
+	-Emails
+
