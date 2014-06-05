@@ -1,0 +1,11 @@
+%br
+-@routes.each do |r|
+	-if r.name
+		= r.name
+
+		
+	= grade_format(r.grade,r.modifier)
+	= link_to "view", route_path(r) 
+	%br
+%br
+=link_to "add a route", new_route_path
