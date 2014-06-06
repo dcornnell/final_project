@@ -14,7 +14,7 @@ class RoutesController < ApplicationController
 
 	def create 
 		@new_route = Route.new(route_params)
-		@new_route.score = @new_route.calculate_grade(@new_route.grade, @new_route.modifier)
+		
 
 		if @new_route.save
 			redirect_to routes_path, notice: "The new route has been added"

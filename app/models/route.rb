@@ -1,16 +1,12 @@
 class Route < ActiveRecord::Base
-validates_presence_of :score, :grade,  :modifier
+validates_presence_of :grade_id 
 has_many :attempts
+belongs_to :grade
 
-def calculate_grade(level, modifier)
-	@grade = level + 1
-	if modifier == 1
-			@grade +=  0.3333333
-		elsif modifier == 2
-			@grade -=  0.3333333
-		else
-			@grade 
-		end
-		@grade *= 10
-	end
+def score
+	self.grade.score
 end
+
+end
+
+

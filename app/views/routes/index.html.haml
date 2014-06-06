@@ -2,9 +2,10 @@
 -@routes.each do |r|
 	-if r.name
 		= r.name
+		=r.grade.name
 
 		
-	= grade_format(r.grade,r.modifier)
+	
 	= link_to "view", route_path(r) 
 	%br
 %br

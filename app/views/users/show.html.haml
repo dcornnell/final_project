@@ -3,6 +3,15 @@
 %h2 
 	="#{@user.first_name}" "#{@user.last_name}"
 	what up dude! or dudette!
+	=@user.total_score
 
 =link_to "check out routes", routes_path
 =link_to "add a new attempt!", new_attempt_path
+
+-@user.attempts.each do |a|
+	=a.date_attempted
+	-if a.route
+
+		=a.route.name
+		=a.attempt_score
+	%br

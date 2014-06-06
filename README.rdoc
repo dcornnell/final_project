@@ -7,8 +7,11 @@
 		*Emails
 
 2. Routes
-	*quick add routes 
-	*batch add routes
+
+
+3. Attempts 
+		*quick add attempts - this is gonna be harder than it sounds because its connected with routes
+	*batch add attempts
 
 
 

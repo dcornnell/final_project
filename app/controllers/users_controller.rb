@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
 	def show 
 		@user = User.find(params[:id])
-		puts @user
+		@user.total_score = @user.attempts.sum(:attempt_score)
+		@user.save
 	end
 
 	private

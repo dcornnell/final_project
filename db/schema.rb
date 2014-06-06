@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605214717) do
+ActiveRecord::Schema.define(version: 20140606182054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,19 @@ ActiveRecord::Schema.define(version: 20140605214717) do
     t.datetime "updated_at"
   end
 
+  create_table "grades", force: true do |t|
+    t.string  "route_type"
+    t.integer "score"
+    t.string  "name"
+  end
+
   create_table "roles", force: true do |t|
     t.string "name"
   end
 
   create_table "routes", force: true do |t|
     t.string   "name"
-    t.integer  "grade"
+    t.integer  "grade_id"
     t.string   "info"
     t.integer  "modifier"
     t.integer  "score"

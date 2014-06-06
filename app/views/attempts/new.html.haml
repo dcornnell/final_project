@@ -1,12 +1,11 @@
 = form_for @new_attempt, url: attempts_path do |f|
-	/ User:
-	/ = f.select :user_id, User.all.collect {|u| [u.name, u.id]}
+	
 	
 	= f.hidden_field :user_id, :value => session[:user_id]
 	= f.label :date_attempted
 	= f.date_field :date_attempted
 	Route
-	= f.select :route_id, Route.all.collect {|u| ["#{u.name}, #{grade_format(u.grade,u.modifier)}", u.id]}
+	= f.select :route_id, Route.all.collect {|u| ["#{u.name}, #{u.grade.name}", u.id]}
 
 
 	=f.label :flash

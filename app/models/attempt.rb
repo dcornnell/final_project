@@ -1,7 +1,7 @@
 class Attempt < ActiveRecord::Base
 belongs_to :user
 belongs_to :route
-validates_presence_of :attempt_date
+validates_presence_of :date_attempted
 
 
 	def add_modifiers(grade, completed, flash)
@@ -17,4 +17,6 @@ validates_presence_of :attempt_date
 			end
 			grade
 		end
+
+
 end
