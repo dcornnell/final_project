@@ -1,17 +1,66 @@
-%h1 
-	=@user.user_name
-%h2 
-	="#{@user.first_name}" "#{@user.last_name}"
-	what up dude! or dudette!
-	=@user.total_score
+%br
+.row
+	
+	.large-9.columns
+		%ul.tabs{"data-tab" => ""}
+			%li.tab-title.active
+				%a{href: "#panel2-1"} About
+			%li.tab-title
+				%a{href: "#panel2-2"} Attempts
+			%li.tab-title
+				%a{href: "#panel2-3"} Stats
+		.tabs-content
+			#panel2-1.content.active
+				
+			#panel2-2.content
+				%h5.title
+				Attempts
+			
+				%table.table-bordered
+					%th date
+					%th attempt score
+					%th notes
+					%th route name
+					%th route grade
 
-=link_to "check out routes", routes_path
-=link_to "add a new attempt!", new_attempt_path
 
--@user.attempts.each do |a|
-	=a.date_attempted
-	-if a.route
+					- @user.attempts.each do |f|
+						%tr
+							%td
+								=f.date_attempted
+							%td
+								=f.attempt_score
+							%td
+								=f.notes
+							%td
+								-if f.route
+									=link_to "#{f.route.name}", route_path(f.route.id)
+									
+								-else
+									route not found
+							%td
+								-if f.route
+									=f.route.grade.name
+							
+					%tr
+					=link_to "(add a new attempt)", new_attempt_path
+			#panel2-3.content
+				%p Third panel content goes here...
+			
+			
+				
+			
+	/ Sidebar
+	.large-3.columns
+		
+		
+		%h3 
+			=@user.user_name
+			
+		%p
+			%h2 scores
+			Your life time score
+			= @user.attempts.sum(:attempt_score)
+			
 
-		=a.route.name
-		=a.attempt_score
-	%br
+
