@@ -10,6 +10,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'haml'
 gem 'foundation-rails'
+gem 'chartkick'
+gem 'groupdate'
 
 gem 'jquery-rails'
 gem 'turbolinks'

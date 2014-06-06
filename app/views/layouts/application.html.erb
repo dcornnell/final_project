@@ -56,12 +56,14 @@
     </ul>
   </section>
 </nav>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
     <%= yield %>
 
      <% if flash[:notice] %>
           <div class="notice"><%= flash[:notice] %></div>
          <% end %></a></li>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

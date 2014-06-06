@@ -9,6 +9,8 @@
 				%a{href: "#panel2-2"} Attempts
 			%li.tab-title
 				%a{href: "#panel2-3"} Stats
+
+
 		.tabs-content
 			#panel2-1.content.active
 				
@@ -45,7 +47,7 @@
 					%tr
 					=link_to "(add a new attempt)", new_attempt_path
 			#panel2-3.content
-				%p Third panel content goes here...
+				= line_chart Attempt.group_by_week(:date_attempted).count
 			
 			
 				
