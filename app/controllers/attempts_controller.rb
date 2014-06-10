@@ -1,10 +1,13 @@
 class AttemptsController < ApplicationController
+	
 	def index 
 		@attempts = Attempt.all
+
 	end
 
 	def show
 		@attempt = Attempt.find(params[:id])
+	
 	end
 
 
@@ -46,6 +49,8 @@ class AttemptsController < ApplicationController
 	end
 
 	private
+
+
 
 	def attempt_params
 		params.require(:attempt).permit!

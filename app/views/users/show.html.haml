@@ -13,7 +13,7 @@
 
 		.tabs-content
 			#panel2-1.content.active
-				
+				=@user.description
 			#panel2-2.content
 				%h5.title
 				Attempts
@@ -47,8 +47,32 @@
 					%tr
 					=link_to "(add a new attempt)", new_attempt_path
 			#panel2-3.content
-				= line_chart Attempt.group_by_week(:date_attempted).count
-			
+				%table.table-bordered
+					%th today
+					%th week
+					%th month
+					%th year
+					%th total
+					%tr
+						%td
+							= @user.attempts.this_day.sum(:attempt_score)
+						%td
+							= @user.attempts.this_week.sum(:attempt_score)
+						%td
+							= @user.attempts.this_month.sum(:attempt_score)
+						%td
+							= @user.attempts.this_year.sum(:attempt_score)
+						%td
+							=  @user.attempts.sum(:attempt_score)
+
+
+				= line_chart @user.attempts.group_by_day(:date_attempted).count
+
+				
+
+				= pie_chart(@grade_names)
+
+				
 			
 				
 			
@@ -58,11 +82,18 @@
 		
 		%h3 
 			=@user.user_name
+
 			
 		%p
 			%h2 scores
 			Your life time score
 			= @user.attempts.sum(:attempt_score)
+			%br
+			Todays score
+			= @user.attempts.this_day.sum(:attempt_score)
+
+		%p 
+			=link_to "edit profile", edit_user_path(@user.id)
 			
 
 

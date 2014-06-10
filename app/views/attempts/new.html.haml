@@ -7,10 +7,10 @@
 	Route
 	= f.select :route_id, Route.all.collect {|u| ["#{u.name}, #{u.grade.name}", u.id]}
 
-
+	%br
 	=f.label :flash
 	=f.check_box :flash
-
+	%br
 	=f.label :completed
 	=f.check_box :completed
 

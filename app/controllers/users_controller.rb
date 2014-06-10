@@ -17,7 +17,26 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@user.total_score = @user.attempts.sum(:attempt_score)
 		@user.save
+		@attempts = AttemptsPresenter.new(@user.attempts)
+		@grade_names = @attempts.collect_grades
+		puts "---------------------------------------------------"
+		puts @grade_names
+		puts "---------------------------------------------------"
 	end
+
+	def edit
+		@user = User.find(params[:id])
+	end
+
+	def update
+		@user = User.find(params[:id])
+		if @user.update_attributes(user_params)
+			redirect_to user_path(current_user)
+		else
+			render edit_user_path
+		end
+	end
+
 
 	private
 

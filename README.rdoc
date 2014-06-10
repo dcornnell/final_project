@@ -2,8 +2,7 @@
 # technically bouldering "thigns are called problems not routes"
 # render in controllers make, notices fail to display
 1. USERS
-	-Super Basic User create and log in done stuff to make it better
-		*Roles
+	
 		*Emails
 
 2. Routes
