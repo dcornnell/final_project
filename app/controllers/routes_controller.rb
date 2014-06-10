@@ -7,6 +7,7 @@ class RoutesController < ApplicationController
 	def show
 		@route = Route.find(params[:id])
 		@new_comment = @route.comments.build
+		@new_tag = @route.tags.build
 	end
 
 

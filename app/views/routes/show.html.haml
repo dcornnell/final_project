@@ -24,7 +24,6 @@
 				%hr
 		%h6 Add a comment:
 		= form_for @new_comment, url: comments_path, method: :post do |f|
-			
 			=f.hidden_field :commentable_id, value: @new_comment.commentable_id 
 			=f.hidden_field :commentable_type, value: @new_comment.commentable_type
 			=f.hidden_field :user_id, :value => current_user.id
@@ -32,4 +31,17 @@
 			%br
 			= f.text_area :content
 			=f.submit "submit", class: "button"
+
+
+	= form_for @new_tag, url: tags_path, method: :post do |f|
+		= hidden_field_tag :route_id, @route.id
+		add tag:
+		%br
+		= f.text_area :name
+		= f.submit "submit" , class: "button tiny"
+		%br
+	-@route.tags.each do |f|
+		-if f.name
+			.label
+				=f.name
 
