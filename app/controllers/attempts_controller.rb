@@ -1,5 +1,5 @@
 class AttemptsController < ApplicationController
-	
+	load_and_authorize_resource param_method: :attempts_params
 	def index 
 		@attempts = Attempt.all
 
