@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	load_and_authorize_resource param_method: :users_params
 	def new
 		@new_user = User.new
 	end
@@ -19,9 +20,7 @@ class UsersController < ApplicationController
 		@user.save
 		@attempts = AttemptsPresenter.new(@user.attempts)
 		@grade_names = @attempts.collect_grades
-		puts "---------------------------------------------------"
-		puts @grade_names
-		puts "---------------------------------------------------"
+
 	end
 
 	def edit

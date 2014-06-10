@@ -1,10 +1,12 @@
 class RoutesController < ApplicationController
+	load_and_authorize_resource param_method: :routes_params
 	def index 
 		@routes = Route.all
 	end
 
 	def show
 		@route = Route.find(params[:id])
+		@new_comment = @route.comments.build
 	end
 
 
