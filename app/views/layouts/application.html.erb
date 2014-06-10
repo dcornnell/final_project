@@ -36,7 +36,7 @@
       <li class="has-dropdown">
         <a href="#">Menu</a>
         <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
+          <li><a href="/routes">Routes</a></li>
         </ul>
       </li>
     </ul>
@@ -56,12 +56,14 @@
     </ul>
   </section>
 </nav>
-
-    <%= yield %>
-
-     <% if flash[:notice] %>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+   <% if flash[:notice] %>
           <div class="notice"><%= flash[:notice] %></div>
          <% end %></a></li>
+    <%= yield %>
+
+  
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>
