@@ -6,6 +6,8 @@
 	.large-9.columns
 		%h1 
 			= @route.name
+		= link_to "edit | ", edit_route_path
+		= link_to "delete", route_path, :method => "delete"
 		%hr
 		%h4 
 			= @route.info
@@ -40,10 +42,23 @@
 		%h4
 			grade:
 			= @route.grade.name
+		
+		
 		%br
-		= link_to "edit | ", edit_route_path
-		= link_to "delete", route_path, :method => "delete"
+		%h4 
+			rating:
+		- if @route.rating
+			= @route.rating
+		- else
+			Unrated
 		%br
+		= @route.rating_count
+		have reviewed this route
+		%br
+		rate this route:
+			
+
+
 		%br
 		%p
 			User tagged this route as:
