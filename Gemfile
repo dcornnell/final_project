@@ -23,6 +23,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan' , '~> 1.8'
 gem 'draper'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+end
+
 
 
 # gem 'debugger', group: [:development, :test]

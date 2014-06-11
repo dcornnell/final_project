@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	load_and_authorize_resource param_method: :comments_params
 	def new 
 		@new_comment = Comment.new
 	end
