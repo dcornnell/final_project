@@ -1,5 +1,4 @@
 
-
 %br
 
 .row
@@ -46,16 +45,20 @@
 		
 		%br
 		%h4 
-			rating:
-		- if @route.rating
-			= @route.rating
-		- else
-			Unrated
+		rating:
+
+		=@route.ratings.average(:rating)
+	
+		
+		
+		add your rating
+		= form_for @new_rating, url: ratings_path do |f|
+			= f.hidden_field :user_id, :value => current_user.id
+			= f.hidden_field :route_id, :value => @route.id
+			= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+			= f.submit "rate" , class:"button"
 		%br
-		= @route.rating_count
-		have reviewed this route
-		%br
-		rate this route:
+		
 			
 
 
