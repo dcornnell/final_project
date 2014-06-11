@@ -1,47 +1,59 @@
-%h1
-	= @route.name
-
-
-%p
-
-	= @route.grade.name
-
-= link_to "edit this route", edit_route_path
-= link_to "delete this route", route_path, :method => "delete"
-
-
+%br
 .row
-	.small-11.small-centered-columns
-		%h6 Comments
+	.large-9.columns
+		%h1 
+			= @route.name
 		%hr
-		-@route.comments.each do |f|
+		%h4 
+			= @route.info
+		
+	
+		
+		%hr
+		%h5 Comments
+		
+		- @route.comments.each do |f|
 			-if f.user
 				.div{class:"label"}
-					=f.user.user_name
+					= f.user.user_name
 				says:
 				%br
-				=f.content
+				= f.content
 				%hr
 		%h6 Add a comment:
 		= form_for @new_comment, url: comments_path, method: :post do |f|
-			=f.hidden_field :commentable_id, value: @new_comment.commentable_id 
-			=f.hidden_field :commentable_type, value: @new_comment.commentable_type
-			=f.hidden_field :user_id, :value => current_user.id
+			= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
+			= f.hidden_field :commentable_type, value: @new_comment.commentable_type
+			= f.hidden_field :user_id, :value => current_user.id
 			comment:
 			%br
 			= f.text_area :content
-			=f.submit "submit", class: "button"
+			= f.submit "submit", class: "button"
+	.large-3.columns
+		%h3 About
 
 
-	= form_for @new_tag, url: tags_path, method: :post do |f|
-		= hidden_field_tag :route_id, @route.id
-		add tag:
+		%p
+		%h4
+			grade:
+			= @route.grade.name
 		%br
-		= f.text_area :name
-		= f.submit "submit" , class: "button tiny"
+		= link_to "edit | ", edit_route_path
+		= link_to "delete", route_path, :method => "delete"
 		%br
-	-@route.tags.each do |f|
-		-if f.name
-			.label
-				=f.name
+		%br
+		%p
+			User tagged this route as:
+			-@route.tags.each do |f|
+				-if f.name
+					.label
+						=f.name
+
+		= form_for @new_tag, url: tags_path, method: :post do |f|
+			= hidden_field_tag :route_id, @route.id
+			add tag:
+			%br
+			= f.text_area :name
+			= f.submit "submit" , class: "button tiny"
+			%br
 
