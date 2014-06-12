@@ -24,10 +24,7 @@ gem 'cancancan' , '~> 1.8'
 gem 'draper'
 gem 'paperclip', "3.5.2"
 gem 'aws-sdk'
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
