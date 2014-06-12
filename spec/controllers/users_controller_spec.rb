@@ -1,5 +1,6 @@
 
 require 'rails_helper'
+include AuthenticationHelper
 
 describe UsersController do
 	
@@ -39,10 +40,6 @@ describe UsersController do
 				}.to change(User, :count).by(1)
 			end
 
-			# it 'redirects to the index page' do
-			# 	get login_path
-			# 	response.should render_template login_path
-			# end
 		end
 		
 		context 'invalid user attributes' do
@@ -67,42 +64,39 @@ describe UsersController do
 		end
 
 
-		# it 'should render the edit page' do
-		# 	@user = FactoryGirl.create(:user) 
-		# 	get :edit , id:@user.id
-		# 	response.should render_template :edit
-		# end
+		it 'should render the edit page' do
+			@user = FactoryGirl.create(:user) 
+			login(@user)
+			get :edit , id:@user.id
+			response.should render_template :edit
+		end
 	end
 	describe 'Put #update'
 		
 		context 'valid update' do
 			before :each do
 				@user =FactoryGirl.create(:user)
+
 			end
-			# it 'should update the information' do
-			# 	put :update, id: @user, user: FactoryGirl.attributes_for(:user, name: "Name Change")
-			# 	@user.reload
-			# 	@user.name.should eq("Name Change")
-			# end
-			# it 'should redirect to the users page' do
-			# 	get user_path(@user.id)
-			# 	response.should render_template user_path(@user.id)
-			# end
+			it 'should update the information' do
+				login(@user)
+				put :update, id: @user, :user => {user_name: "update_name"}
+				updated_user = User.find(@user.id)
+				expect(updated_user.user_name).to eq "update_name"
+			end
+		
 		end
 		context 'invalid update' do 
 			before :each do
 				@user =FactoryGirl.create(:user)
 			end
-			# it 'should not update the information' do
-			# 	put :update, id: @user.id, user: FactoryGirl.attributes_for(:user, name: nil)
-			# 	@user.reload
-			# 	@user.first_name.should eq("William")
-			# end
-			# it 'should redirect to the page' do
-			# 	@user = FactoryGirl.create(:user) 
-			# 	get :edit , id:@user.id
-			# 	response.should render_template :edit
-			# end
+			it 'should not update the information' do
+				login(@user)
+				put :update, id: @user, :user => {user_name: nil}
+				updated_user = User.find(@user.id)
+				expect(updated_user.user_name).to eq "Madmouth"
+			end
+	
 		end
 
 end
