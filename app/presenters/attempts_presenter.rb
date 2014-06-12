@@ -8,7 +8,9 @@ class AttemptsPresenter
 
 	def collect_grades
 		@attempts.each do |g|
-		 @grades << g.route.grade.name
+
+		 	@grades << g.route.grade.name
+	
 		end
 		@grades.each do |n|
 			@grade_names[n] += 1
