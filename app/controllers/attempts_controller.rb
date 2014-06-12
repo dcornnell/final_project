@@ -1,14 +1,12 @@
 class AttemptsController < ApplicationController
 	load_and_authorize_resource param_method: :attempts_params
-	def index 
-		@attempts = Attempt.all
+	# def index 
+	# 	@attempts = Attempt.all
+	# end
 
-	end
-
-	def show
-		@attempt = Attempt.find(params[:id])
-	
-	end
+	# def show
+	# 	@attempt = Attempt.find(params[:id])
+	# end
 
 
 	def new
@@ -19,7 +17,6 @@ class AttemptsController < ApplicationController
 		@new_attempt = Attempt.new(attempt_params)
 		@new_attempt.attempt_score = @new_attempt.add_modifiers(@new_attempt.route.grade.score, @new_attempt.completed, @new_attempt.flash)
 		if @new_attempt.save
-
 			redirect_to user_path(current_user), notice: "The new attempt has been added"
 		else
 			render new_attempt_path, notice: "you have failed to add this attempt"

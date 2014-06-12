@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+	load_and_authorize_resource param_method: :tagss_params
 	def new
 		@new_tag = Tag.new
 		@route = Route.new
