@@ -46,18 +46,6 @@ class RoutesController < ApplicationController
 
 
 
-	def destroy 
-		@route = Route.find(params[:id])
-		if @route.delete
-			redirect_to routes_path, notice: "the route has been removed"
-		else
-			redirect_to :back, notice:  "something went wrong the route is still here!"
-		end
-	end
- 	#Route for updating just the rating
-	def change_rating
-	end
-
 
 
 	private
