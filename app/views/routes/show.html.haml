@@ -1,8 +1,12 @@
+
 %br
+
 .row
 	.large-9.columns
 		%h1 
 			= @route.name
+		= link_to "edit | ", edit_route_path
+		= link_to "delete", route_path, :method => "delete"
 		%hr
 		%h4 
 			= @route.info
@@ -37,10 +41,34 @@
 		%h4
 			grade:
 			= @route.grade.name
+		
+		
 		%br
-		= link_to "edit | ", edit_route_path
-		= link_to "delete", route_path, :method => "delete"
+		%h4 
+		rating:
+
+		=@route.ratings.average(:rating)
+	
+		
+		- if @route.ratings.where('user_id = ?', current_user.id) == 1
+			you already rated this!
+			/ = form_for @new_rating, url: rating_path do |f|
+			/ 	= f.hidden_field :user_id, :value => current_user.id
+			/ 	= f.hidden_field :route_id, :value => @route.id
+			/ 	= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+			/ 	= f.submit "rate" , class:"button"
+		- else
+			= form_for @new_rating, url: ratings_path do |f|
+				= f.hidden_field :user_id, :value => current_user.id
+				= f.hidden_field :route_id, :value => @route.id
+				= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+				= f.submit "rate" , class:"button"
+				
 		%br
+		
+			
+
+
 		%br
 		%p
 			User tagged this route as:

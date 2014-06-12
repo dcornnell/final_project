@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610212149) do
+ActiveRecord::Schema.define(version: 20140611190710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(version: 20140610212149) do
     t.string  "route_type"
     t.integer "score"
     t.string  "name"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.integer "user_id"
+    t.integer "route_id"
+    t.decimal "rating"
   end
 
   create_table "roles", force: true do |t|
