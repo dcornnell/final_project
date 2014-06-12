@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140612201031) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +39,6 @@ ActiveRecord::Schema.define(version: 20140612201031) do
     t.string  "route_type"
     t.integer "score"
     t.string  "name"
-  end
-
-  create_table "photos", force: true do |t|
-    t.integer "user_id"
-    t.string  "name"
-    t.date    "photo_date"
-    t.string  "image"
   end
 
   create_table "ratings", force: true do |t|
