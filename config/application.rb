@@ -6,8 +6,20 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module BoulderApp
   class Application < Rails::Application
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_host_name => 's3-us-west-2.amazonaws.com',
+      :s3_credentials => {
+        :bucket => 'rock_climber_dan',
+        :access_key_id => 'AKIAJJ6YESOTBFHUDWWA',
+        :secret_access_key => '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'
+      }
+    }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
