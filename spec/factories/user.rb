@@ -14,6 +14,8 @@ FactoryGirl.define do
 	factory :invalid_user, class: User do 
 		user_name nil
 		email "invalid@example.com"
+		password "qwerty"
+		password_confirmation "qwerty"
 	end
 end
 

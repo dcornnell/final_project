@@ -23,16 +23,7 @@ scope :this_year, -> {where('date_attempted > ? ',   365.days.ago)}
 			grade
 		end
 
-	# def collect_grades
-	# 	@attempt.each do |g|
-	# 		@grades << g.route.grade.name
-	# 		@grades
-	# 	end
-	# end
 
-	# def grab_grade
-	# 	self.route.grade.name
-	# end
 
 
 end
