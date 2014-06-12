@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-
+ 
+ has_many :friendships
+ has_many :friends, :through => :friendships
  belongs_to :role
  has_many :attempts
  has_many :comments

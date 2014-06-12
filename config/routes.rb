@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :tags
   resources :ratings
+  resources :friendships
   root 'sessions#new'
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"

@@ -94,6 +94,11 @@
 
 		%p 
 			=link_to "edit profile", edit_user_path(@user.id)
+
+		%p
+			Friends
+			-@user.friends.each do |f|
+				=f.user_name
 			
 
 

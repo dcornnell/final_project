@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 	load_and_authorize_resource param_method: :users_params
+	
+	def index
+		@users = User.all
+	end
+
 	def new
 		@new_user = User.new
 	end
