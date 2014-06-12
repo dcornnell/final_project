@@ -22,7 +22,7 @@ class RoutesController < ApplicationController
 
 	def create 
 		@new_route = Route.new(route_params)
-		
+
 		if @new_route.save
 			redirect_to routes_path, notice: "The new route has been added"
 		else

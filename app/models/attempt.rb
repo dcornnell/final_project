@@ -8,7 +8,7 @@ scope :this_week, -> {where('date_attempted > ?', 7.days.ago)}
 scope :this_month, -> {where('date_attempted > ? ',   30.days.ago)}
 scope :this_year, -> {where('date_attempted > ? ',   365.days.ago)}
 
-
+	# adds or subtracts points based on params provided
 	def add_modifiers(grade, completed, flash)
 	
 			if completed == true
@@ -23,16 +23,7 @@ scope :this_year, -> {where('date_attempted > ? ',   365.days.ago)}
 			grade
 		end
 
-	def collect_grades
-		@attempt.each do |g|
-			@grades << g.route.grade.name
-			@grades
-	end
-end
 
-	def grab_grade
-		self.route.grade.name
-	end
 
 
 end
