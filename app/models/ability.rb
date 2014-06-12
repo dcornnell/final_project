@@ -9,7 +9,7 @@ class Ability
       else
         can [:read], [Attempt, Grade, Route, User, Comment, Tag]
         can [:create], [Attempt, Route, User, Comment, Tag]
-        can [:edit, :update], [Attempt, Route, User, Comment], :user_id => user.id
+        can [:edit, :update], [Attempt, User, Comment, Tag]  # somethig strange is going on here, :user_id => user.id
       end
   end
 end
