@@ -8,6 +8,11 @@ class RoutesController < ApplicationController
 		@route = Route.find(params[:id])
 		@new_comment = @route.comments.build
 		@new_tag = @route.tags.build
+		if @route.ratings.where('user_id = ?', current_user.id)
+			@new_rating = @route.ratings.build
+		else
+			@rating = @route.ratings.where('user_id = ?', current_user.id)
+		end
 	end
 
 
@@ -17,6 +22,7 @@ class RoutesController < ApplicationController
 
 	def create 
 		@new_route = Route.new(route_params)
+
 		if @new_route.save
 			redirect_to routes_path, notice: "The new route has been added"
 		else
@@ -37,6 +43,9 @@ class RoutesController < ApplicationController
 		end
 	end
 
+
+
+
 	def destroy 
 		@route = Route.find(params[:id])
 		if @route.delete
@@ -44,6 +53,9 @@ class RoutesController < ApplicationController
 		else
 			redirect_to :back, notice:  "something went wrong the route is still here!"
 		end
+	end
+ 	#Route for updating just the rating
+	def change_rating
 	end
 
 

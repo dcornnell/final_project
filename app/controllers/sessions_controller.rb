@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
 	
-	# def new
-	# end
+
+	def new
+		session[:user_id] = nil
+	end
+
 
 	def create
 		user = User.find_by_user_name(params[:user_name]).try(:authenticate, params[:password])

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :attempts
   resources :comments
   resources :tags
+  resources :ratings
   root 'sessions#new'
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
-
-  
+ 
 end
