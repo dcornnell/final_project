@@ -1,4 +1,13 @@
-- @users.each do |u|
-		= u.user_name
-		= link_to "Add Friend", friendships_path(:friend_id => u), :method => :post
+
+%table
+	- @users.each do |u|
+		%tr
+			%td
+				= image_tag u.avatar.url ,:style => "max-width: 50px"
+			%td	
+				= u.user_name
+			%td
+				= u.total_score
+			%td
+				= link_to "Follow", friendships_path(:friend_id => u), :method => :post
 

@@ -82,7 +82,8 @@
 		
 		%h3 
 			= @user.user_name
-			= image_tag @user.avatar.url ,:style => "max-width: 100%"
+			%br
+			= image_tag @user.avatar.url ,:style => "max-width: 300px"
 			
 		%p
 			%h2 scores
