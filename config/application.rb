@@ -15,8 +15,10 @@ module BoulderApp
       :s3_host_name => 's3-us-west-2.amazonaws.com',
       :s3_credentials => {
         :bucket => 'rock_climber_dan',
-        :access_key_id => 'AKIAJJ6YESOTBFHUDWWA',
-        :secret_access_key => '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'
+        :access_key_id => Rails.application.secrets.aws_id,
+        :secret_access_key => Rails.application.secrets.aws_secret,
+        :url => "/:image/:id/:style/:basename.:extension",
+        :path => ":image/:id/:style/:basename.:extension"
       }
     }
 

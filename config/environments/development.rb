@@ -40,8 +40,8 @@ Rails.application.configure do
   :storage => :s3,
   :s3_credentials => {
     :bucket => 'rock_climber_dan',
-    :access_key_id => ENV['#{Rails.application.secrets.aws_key}'],
-    :secret_access_key => ENV['#{Rails.application.secrets.aws_secret}']
+    :access_key_id => Rails.application.secrets.aws_id,
+    :secret_access_key => Rails.application.secrets.aws_secret
 
     
   }
