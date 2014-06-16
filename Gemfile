@@ -25,6 +25,9 @@ gem 'cancancan' , '~> 1.8'
 gem 'draper'
 gem 'paperclip', "3.5.2"
 gem 'aws-sdk'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 
 
 
