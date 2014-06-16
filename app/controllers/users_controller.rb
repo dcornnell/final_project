@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 	load_and_authorize_resource param_method: :users_params
+	skip_authorize_resource :only => :search
+	
+	def index
+		@users = User.all
+	end
+
 	def new
 		@new_user = User.new
 	end
@@ -34,6 +40,14 @@ class UsersController < ApplicationController
 		else
 			render edit_user_path
 		end
+	end
+
+
+	def search
+		@search_results = User.search(params[:search])
+		puts "-----------------------"
+		puts @search_results
+		render results_users_path 
 	end
 
 

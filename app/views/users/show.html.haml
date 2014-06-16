@@ -66,7 +66,7 @@
 							=  @user.attempts.sum(:attempt_score)
 
 
-				= line_chart @user.attempts.group_by_day(:date_attempted).count
+				= line_chart @user.attempts.group_by_week(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 
 				
 
@@ -82,7 +82,8 @@
 		
 		%h3 
 			= @user.user_name
-			= image_tag @user.avatar.url ,:style => "max-width: 100%"
+			%br
+			= image_tag @user.avatar.url ,:style => "max-width: 300px"
 			
 		%p
 			%h2 scores
@@ -94,6 +95,18 @@
 
 		%p 
 			=link_to "edit profile", edit_user_path(@user.id)
+
+		%p
+		%h3	
+			Friends
+			%br
+
+
+			-@user.friends.each do |f|
+
+				%span.has-tip{"data-tooltip" => "", title: "#{f.user_name}"} 
+					= link_to "#{image_tag(f.avatar.url(:thumb))}".html_safe, user_path(f)
+
 			
 
 
