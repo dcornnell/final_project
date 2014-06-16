@@ -17,15 +17,10 @@ class User < ActiveRecord::Base
  	#search method
  	def self.search(params)
 		user_name = params[:user_name]
-		last_name = params[:last_name]
 		search = User.all
 
-		if user_name.present? 
+		if user_name.present?
 			 search = search.where('user_name Like ?', "#{user_name}")
-		end
-
-		if last_name .present?
-			search = search.where('last_name Like ?', "#{last_name}")
 		end
 	end
 

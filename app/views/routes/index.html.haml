@@ -1,12 +1,21 @@
-%br
--@routes.each do |r|
-	-if r.name
-		= r.name
-		=r.grade.name
-
-		
+.row
 	
-	= link_to "view", route_path(r) 
-	%br
-%br
-=link_to "add a route", new_route_path
+	.large-9.columns
+		%h1 Routes
+		%br
+		%table
+			%th name
+			%th grade
+
+			-@routes.each do |r|
+				%tr
+					%td
+						-if r.name
+							= r.name
+					%td
+						= r.grade.name
+					%td
+						= link_to "view", route_path(r) 
+						%br
+		%br
+		=link_to "add a route", new_route_path
