@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :tags
   resources :ratings
   resources :friendships
-  root 'sessions#new'
+  resources :posts
+  root 'posts#index'
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
  

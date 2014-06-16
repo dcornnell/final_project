@@ -66,7 +66,7 @@
 							=  @user.attempts.sum(:attempt_score)
 
 
-				= line_chart @user.attempts.group_by_day(:date_attempted).count
+				= line_chart @user.attempts.group_by_week(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 
 				
 

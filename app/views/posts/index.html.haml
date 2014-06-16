@@ -1,0 +1,15 @@
+.large-12.columns
+	%br
+	- @posts.each do |p|
+		%h2
+			=p.title
+		%hr
+		%h3
+			=p.user.user_name
+		posted on :
+		=p.post_date
+		%p
+			=p.post
+
+
+
