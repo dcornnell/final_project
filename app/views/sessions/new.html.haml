@@ -1,6 +1,14 @@
+%br
 =form_tag sessions_path do
 	=text_field_tag :user_name
 	=password_field_tag :password
-	=submit_tag "login", class:"button"
+	=submit_tag "Login", class:"button"
 
+or
+
+=button_to "Login with facebook" , auth_facebook_path, class:"button"
+
+
+%br
+%br
 =link_to "create new user", new_user_path

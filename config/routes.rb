@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   root 'posts#index'
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
+
+  get "auth/facebook" => "auth#facebook"
+  get "/auth/facebook/callback" => "auth#facebook"
  
 end
