@@ -45,7 +45,8 @@
 									=f.route.grade.name
 							
 					%tr
-					=link_to "(add a new attempt)", new_attempt_path
+					- if current_user.id == @user.id
+						=link_to "(add a new attempt)", new_attempt_path
 			#panel2-3.content
 				%table.table-bordered
 					%th today
@@ -66,7 +67,7 @@
 							=  @user.attempts.sum(:attempt_score)
 
 
-				= line_chart @user.attempts.group_by_week(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
+				= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 
 				
 
@@ -97,9 +98,10 @@
 			=link_to "edit profile", edit_user_path(@user.id)
 
 		%p
-		%h3	
-			Friends
-			%br
+		%h3	Friends
+		=link_to "(add friends)" , users_path
+
+		%br
 
 
 			-@user.friends.each do |f|

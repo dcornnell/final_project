@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 			 search = search.where('user_name Like ?', "#{user_name}")
 		end
 
-		if last_name.present?
+		if last_name .present?
 			search = search.where('last_name Like ?', "#{last_name}")
 		end
 	end
