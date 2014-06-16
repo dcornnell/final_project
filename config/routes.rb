@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    collection do 
+      get :search
+      get :results
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :routes
   resources :attempts

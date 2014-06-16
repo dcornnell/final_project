@@ -16,7 +16,7 @@
 		%th
 		%th name 
 		%th score 
-		- @users.each do |u|
+		- @search_results.each do |u|
 			%tr
 				%td
 					= image_tag u.avatar.url ,:style => "max-width: 50px"

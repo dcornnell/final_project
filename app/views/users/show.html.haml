@@ -97,9 +97,16 @@
 			=link_to "edit profile", edit_user_path(@user.id)
 
 		%p
+		%h3	
 			Friends
+			%br
+
+
 			-@user.friends.each do |f|
-				=f.user_name
+
+				%span.has-tip{"data-tooltip" => "", title: "#{f.user_name}"} 
+					= link_to "#{image_tag(f.avatar.url(:thumb))}".html_safe, user_path(f)
+
 			
 
 
