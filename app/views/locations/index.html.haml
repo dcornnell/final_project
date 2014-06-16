@@ -1,0 +1,12 @@
+%h1 locations
+= form_tag locations_path, :method => :get do
+	%p
+		= text_field_tag :search, params[:search]
+		= submit_tag "Search Near", :name => nil
+
+
+-@locations.each do |l|
+	= l.address
+	= l.distance.round(2) 
+	miles
+	%br

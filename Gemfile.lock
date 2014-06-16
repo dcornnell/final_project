@@ -70,6 +70,7 @@ GEM
     foundation-rails (5.2.3.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+    geocoder (1.2.2)
     groupdate (2.1.1)
       activerecord (>= 3.0.0)
     haml (4.0.5)
@@ -210,6 +211,7 @@ DEPENDENCIES
   draper
   factory_girl_rails
   foundation-rails
+  geocoder
   groupdate
   haml
   jbuilder (~> 2.0)

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :ratings
   resources :friendships
   resources :posts
+  resources :locations
   root 'posts#index'
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
