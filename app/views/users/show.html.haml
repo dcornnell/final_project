@@ -71,7 +71,7 @@
 
 				
 
-				= pie_chart(@grade_names , width: "500px")
+				= pie_chart(@grade_names)
 
 				= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 				
