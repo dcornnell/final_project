@@ -1,15 +1,18 @@
 .large-12.columns
+	%h1 News:
 	%br
 	- @posts.each do |p|
-		%h2
-			=p.title
-		%hr
-		%h3
-			=p.user.user_name
-		posted on :
-		=p.post_date
-		%p
-			=p.post
+
+		.panel
+			%h3
+				=p.title
+			%b
+				=p.user.user_name
+			posted on :
+			=formatted_date(p.post_date)
+			%p
+				%br
+				=p.post
 
 
 

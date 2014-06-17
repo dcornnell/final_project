@@ -7,6 +7,7 @@
 		
 		%h1
 			= @user.user_name
+		
 			= image_tag @user.avatar.url ,:style => "max-width: 300px"
 
 		%h2 Scores
@@ -28,15 +29,16 @@
 				%td
 					=  @user.attempts.sum(:attempt_score)
 
-		=link_to "edit profile", edit_user_path(@user.id)
+		
 
 
-		%h2	Friends
-		=link_to "(add friends)" , users_path
+		%h2	Following
+		-if current_user == @user.id
+			=link_to "(add friends)" , users_path
 
-		%br
 
 
+		.panel
 			-@user.friends.each do |f|
 
 				%span.has-tip{"data-tooltip" => "", title: "#{f.user_name}"} 
@@ -75,7 +77,7 @@
 					- @user.attempts.last(10).reverse.each do |f|
 						%tr
 							%td
-								=f.date_attempted
+								=formatted_date(f.date_attempted)
 							%td
 								=f.attempt_score
 							%td

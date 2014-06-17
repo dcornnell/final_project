@@ -44,6 +44,9 @@
           <li><a href="/users">Users</a></li>
           <li><a href="/locations">Locations</a></li>
           <li><a href="/attempts">My Attempts</a></li>
+          <% if current_user %>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %><li>
+          <% end %>
         </ul>
       </li>
     </ul>

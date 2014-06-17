@@ -1,28 +1,22 @@
-
-%br
-.large-6.columns
-	%h3 Search Users
-	= form_tag search_users_path, method: "get" do
-		= label_tag "user_name"
-		= text_field_tag "search[user_name]"
-	
-		%br
-		= submit_tag "search"
-
-
-
-.large-6.columns
-	%table
-		%th
-		%th name 
-		%th score 
-		- @users.each do |u|
-			%tr
-				%td
-					= image_tag u.avatar.url ,:style => "max-width: 50px"
-				%td	
-					= u.user_name
-				%td
-					= u.total_score
-				%td
-					= link_to "Follow", friendships_path(:friend_id => u), :method => :post
+.row
+	%br
+	%h1 Users
+	%br
+	.large-12.columns
+		%table#users.display
+			%thead
+				%th image
+				%th name
+				%th score
+				%th follow
+			%tbody 
+				- @users.each do |u|
+					%tr
+						%td
+							= image_tag u.avatar.url ,:style => "max-width: 50px"
+						%td	
+							=link_to "#{u.user_name}", user_path(u)
+						%td
+							= u.total_score
+						%td
+							= link_to "Follow", friendships_path(:friend_id => u), :method => :post

@@ -1,43 +1,42 @@
-:javascript
-	$(document).ready(function(){
-	    $('#attempts').dataTable();
-	});
-%br
-.large-12.column
-	%table#attempts.display
-		%thead
-			%tr
-				%th date attempted
-				%th score
-				%th notes
-				%th route
-				%th grade
-				%th completed
-		%tbody
-			- @attempts.each do |f|
+
+.row
+.large-12.columns
+
+	
+	.large-12.columns
+		%h1 Attempts
+		%p
+			=link_to "new attempt" , new_attempt_path
+
+		%table#attempts.display
+			%thead
 				%tr
-					%td
-						=f.date_attempted
-					%td
-						=f.attempt_score
-					%td
-						=f.notes
-					%td
-						-if f.route
-							=link_to "#{f.route.name}", route_path(f.route.id)
-							
-						-else
-							route not found
-					%td
-						-if f.route
-							=f.route.grade.name
-					%td
-						=f.completed
+					%th date attempted
+					%th score
+					%th notes
+					%th route
+					%th grade
+					%th completed
+			%tbody
+				- @attempts.each do |f|
+					%tr
+						%td
+							=formatted_date(f.date_attempted)
+						%td
+							=f.attempt_score
+						%td
+							=f.notes
+						%td
+							-if f.route
+								=link_to "#{f.route.name}", route_path(f.route.id)
+								
+							-else
+								route not found
+						%td
+							-if f.route
+								=f.route.grade.name
+						%td
+							=f.completed
 
 
 
-%link{href: "//cdn.datatables.net/1.10.0/css/jquery.dataTables.css", rel: "stylesheet", type: "text/css"}/
-
-%script{charset: "utf8", src: "//code.jquery.com/jquery-1.10.2.min.js", type: "text/javascript"}
-
-%script{charset: "utf8", src: "//cdn.datatables.net/1.10.0/js/jquery.dataTables.js", type: "text/javascript"}

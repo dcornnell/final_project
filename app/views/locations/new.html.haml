@@ -1,3 +1,9 @@
-= form_for @new_location, url: locations_path, method: :post do |f|
-	= render "locations", f: f
+.large-11.columns
+
+	= form_for @new_location, url: locations_path, method: :post do |f|
+		%fieldset
+			%legend 
+				Add a new location
+			= render "locations", f: f
 	
+
