@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	skip_authorize_resource :only => :search
 	
 	def index
-		@users = User.all
+		@users = User.all.order('total_score DESC')
 	end
 
 	def new
