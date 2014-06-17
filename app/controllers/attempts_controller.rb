@@ -1,9 +1,12 @@
 class AttemptsController < ApplicationController
 	load_and_authorize_resource param_method: :attempts_params
 
-	def index
-		@attempts = Attempt.where(user_id: current_user).page(params[:page]).per_page(10)
-	end
+def index
+ 	@attempts = Attempt.where(user_id: current_user)
+end
+
+		# @attempts = Attempt.where(user_id: current_user).page(params[:page]).per_page(10)
+	
 
 	def new
 		@new_attempt = Attempt.new
