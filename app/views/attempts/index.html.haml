@@ -1,0 +1,29 @@
+%br
+= will_paginate @attempts, renderer: FoundationPagination::Rails
+.large-12.column
+	%table
+		%th date
+		%th score
+		%th notes
+		%th route
+		%th grade
+		%th completed
+		- @attempts.each do |f|
+			%tr
+				%td
+					=f.date_attempted
+				%td
+					=f.attempt_score
+				%td
+					=f.notes
+				%td
+					-if f.route
+						=link_to "#{f.route.name}", route_path(f.route.id)
+						
+					-else
+						route not found
+				%td
+					-if f.route
+						=f.route.grade.name
+				%td
+					=f.completed

@@ -28,6 +28,9 @@ gem 'aws-sdk'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'geocoder'
+gem 'will_paginate-foundation'
+
+
 
 
 group :development, :test do
