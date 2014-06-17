@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 		@user.save
 		@attempts = AttemptsPresenter.new(@user.attempts)
 		@grade_names = @attempts.collect_grades
+		
 
 	end
 

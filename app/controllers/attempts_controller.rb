@@ -1,12 +1,6 @@
 class AttemptsController < ApplicationController
 	load_and_authorize_resource param_method: :attempts_params
-	# def index 
-	# 	@attempts = Attempt.all
-	# end
 
-	# def show
-	# 	@attempt = Attempt.find(params[:id])
-	# end
 
 
 	def new

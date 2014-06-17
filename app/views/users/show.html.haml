@@ -1,105 +1,37 @@
 %br
 .row
-	
-	.large-9.columns
-
-		%ul.tabs{"data-tab" => ""}
-			%li.tab-title.active
-				%a{href: "#panel2-1"} About
-			%li.tab-title
-				%a{href: "#panel2-2"} Attempts
-			%li.tab-title
-				%a{href: "#panel2-3"} Stats
-
-
-		.tabs-content
-			#panel2-1.content.active
-				=@user.description
-			#panel2-2.content
-				%h5.title
-				Attempts
-			
-				%table.table-bordered
-					%th date
-					%th attempt score
-					%th notes
-					%th route name
-					%th route grade
-
-
-					- @user.attempts.each do |f|
-						%tr
-							%td
-								=f.date_attempted
-							%td
-								=f.attempt_score
-							%td
-								=f.notes
-							%td
-								-if f.route
-									=link_to "#{f.route.name}", route_path(f.route.id)
-									
-								-else
-									route not found
-							%td
-								-if f.route
-									=f.route.grade.name
-							
-					%tr
-					- if current_user.id == @user.id
-						=link_to "(add a new attempt)", new_attempt_path
-			#panel2-3.content
-				%table.table-bordered
-					%th today
-					%th week
-					%th month
-					%th year
-					%th total
-					%tr
-						%td
-							= @user.attempts.this_day.sum(:attempt_score)
-						%td
-							= @user.attempts.this_week.sum(:attempt_score)
-						%td
-							= @user.attempts.this_month.sum(:attempt_score)
-						%td
-							= @user.attempts.this_year.sum(:attempt_score)
-						%td
-							=  @user.attempts.sum(:attempt_score)
-
-				
-
-				
-
-				= pie_chart(@grade_names)
-
-				= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
-				
-			
-				
-			
+		
 	/ Sidebar
 	.large-3.columns
 		
 		
-		%h3 
+		%h1
 			= @user.user_name
-			%br
 			= image_tag @user.avatar.url ,:style => "max-width: 300px"
-			
-		%p
-			%h2 scores
-			Your life time score
-			= @user.attempts.sum(:attempt_score)
-			%br
-			Todays score
-			= @user.attempts.this_day.sum(:attempt_score)
 
-		%p 
-			=link_to "edit profile", edit_user_path(@user.id)
+		%h2 Scores
+		%table.table-bordered
+			%th today
+			%th week
+			%th month
+			%th year
+			%th total
+			%tr
+				%td
+					= @user.attempts.this_day.sum(:attempt_score)
+				%td
+					= @user.attempts.this_week.sum(:attempt_score)
+				%td
+					= @user.attempts.this_month.sum(:attempt_score)
+				%td
+					= @user.attempts.this_year.sum(:attempt_score)
+				%td
+					=  @user.attempts.sum(:attempt_score)
 
-		%p
-		%h3	Friends
+		=link_to "edit profile", edit_user_path(@user.id)
+
+
+		%h2	Friends
 		=link_to "(add friends)" , users_path
 
 		%br
@@ -109,6 +41,50 @@
 
 				%span.has-tip{"data-tooltip" => "", title: "#{f.user_name}"} 
 					= link_to "#{image_tag(f.avatar.url(:thumb))}".html_safe, user_path(f)
+
+	.large-8.columns
+		%br
+		%h2 About
+		.panel
+			%p 
+				=@user.description
+
+		
+
+	
+
+	
+
+		= pie_chart(@grade_names)
+
+		= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
+
+	%table
+		%th date
+		%th score
+		%th notes
+		%th route
+		- @user.attempts.each do |f|
+			%tr
+				%td
+					=f.date_attempted
+				%td
+					=f.attempt_score
+				%td
+					=f.notes
+				%td
+					-if f.route
+						=link_to "#{f.route.name}", route_path(f.route.id)
+						
+					-else
+						route not found
+				%td
+					-if f.route
+						=f.route.grade.name
+				
+		%tr
+		- if current_user.id == @user.id
+			=link_to "(add a new attempt)", new_attempt_path
 
 			
 
