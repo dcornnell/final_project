@@ -1,5 +1,6 @@
 class Route < ActiveRecord::Base
 validates_presence_of :grade_id 
+validates_presence_of :name
 has_many :attempts
 has_many :ratings
 belongs_to :grade

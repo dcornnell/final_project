@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 	load_and_authorize_resource param_method: :posts_params
 	
 	def index
-		@posts = Post.all
+		@posts = Post.order('post_date desc')
 	end
 
 	def new 

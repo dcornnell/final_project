@@ -1,21 +1,31 @@
 .row
 	
-	.large-9.columns
+	.large-12.columns
 		%h1 Routes
-		%br
-		%table
-			%th name
-			%th grade
 
-			-@routes.each do |r|
-				%tr
-					%td
-						-if r.name
-							= r.name
-					%td
-						= r.grade.name
-					%td
-						= link_to "view", route_path(r) 
-						%br
-		%br
 		=link_to "add a route", new_route_path
+		%br
+		%br
+		%table#routes.display
+			%thead
+				%th name
+				%th grade
+				%th location
+			%tbody
+				-@routes.each do |r|
+					%tr
+						%td
+							= link_to "#{r.name}", route_path(r) 
+							
+						%td
+							= r.grade.name
+						%td
+							-if r.location
+								= r.location.name
+		
+	
+
+		
+
+
+
