@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+
+
   </head>
 
   <body>
@@ -41,6 +43,7 @@
           <li><a href="/routes">Routes</a></li>
           <li><a href="/users">Users</a></li>
           <li><a href="/locations">Locations</a></li>
+          <li><a href="/attempts">My Attempts</a></li>
         </ul>
       </li>
     </ul>
@@ -67,6 +70,15 @@
     <%= yield %>
 
   
+ <!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="/DataTables-1.10.0/css/jquery.dataTables.css">
+  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="/DataTables-1.10.0/js/jquery.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="/DataTables-1.10.0/js/jquery.dataTables.js"></script>
+
 
     <%= javascript_include_tag "application" %>
     
