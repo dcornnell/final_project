@@ -17,11 +17,14 @@ class User < ActiveRecord::Base
  	#search method
  	def self.search(params)
 		user_name = params[:user_name]
+    user_friend = params[:friend]
 		search = User.all
 
 		if user_name.present?
 			 search = search.where('user_name Like ?', "#{user_name}")
 		end
+
+  
 	end
 
   # This method associates the attribute ":avatar" with a file attachment
