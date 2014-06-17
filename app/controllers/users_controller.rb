@@ -45,7 +45,6 @@ class UsersController < ApplicationController
 
 	def search
 		@search_results = User.search(params[:search])
-		puts "-----------------------"
 		puts @search_results
 		render results_users_path 
 	end
