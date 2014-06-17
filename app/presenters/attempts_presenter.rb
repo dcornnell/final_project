@@ -4,6 +4,8 @@ class AttemptsPresenter
 		@attempts = attempts
 		@grades = []
 		@grade_names = Hash.new(0)
+		@tags = []
+		@tag_names = Hash.new(0)
 	end
 
 	def collect_grades
@@ -17,5 +19,21 @@ class AttemptsPresenter
 		end
 		return @grade_names
 	end
+
+	def collect_tags
+		@attempts.each do |attempt|
+			attempt.route.tags.each do |tag|
+				@tags << tag.name
+				end
+			end
+			@tags.each do |n|
+			@tag_names[n] += 1
+			end
+			return @tag_names
+	end
+
+	
+
+
 
 end

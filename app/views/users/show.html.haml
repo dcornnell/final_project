@@ -105,7 +105,14 @@
 			= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 			%p
 				number of routes climbed this week
+
+			= bar_chart(@tag_names)
+			%p
+				routes you climb are descriped as
+
 			
+			
+
 
 				
 
