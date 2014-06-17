@@ -43,49 +43,70 @@
 					= link_to "#{image_tag(f.avatar.url(:thumb))}".html_safe, user_path(f)
 
 	.large-8.columns
+		%div{"data-magellan-expedition" => "fixed"}
+			%dl.sub-nav
+				%dd{"data-magellan-arrival" => "about"}
+					%a{href: "#about"} About
+				%dd{"data-magellan-arrival" => "attempts"}
+					%a{href: "#attempts"} Attempts
+				%dd{"data-magellan-arrival" => "charts"}
+					%a{href: "#charts"} Charts
 		%br
-		%h2 About
+
+		%a{name: "about"}
+		%h3{"data-magellan-destination" => "about"} About
 		.panel
 			%p 
 				=@user.description
-
+		%a{name: "attempts"}
+		%h3{"data-magellan-destination" => "attempts"} Latest Attempts
+		.panel
+			%p
+				- if current_user.id == @user.id
+					=link_to "(add a new attempt)", new_attempt_path
+					=link_to "(view all your attempts)", attempts_path
+				%table
+					%th date
+					%th score
+					%th notes
+					%th route
+					%th grade
+					%th completed
+					- @user.attempts.last(10).reverse.each do |f|
+						%tr
+							%td
+								=f.date_attempted
+							%td
+								=f.attempt_score
+							%td
+								=f.notes
+							%td
+								-if f.route
+									=link_to "#{f.route.name}", route_path(f.route.id)
+									
+								-else
+									route not found
+							%td
+								-if f.route
+									=f.route.grade.name
+							%td
+								=f.completed
 		
-
-	
-
-	
-
-		= pie_chart(@grade_names)
-
-		= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
-
-	%table
-		%th date
-		%th score
-		%th notes
-		%th route
-		- @user.attempts.each do |f|
-			%tr
-				%td
-					=f.date_attempted
-				%td
-					=f.attempt_score
-				%td
-					=f.notes
-				%td
-					-if f.route
-						=link_to "#{f.route.name}", route_path(f.route.id)
-						
-					-else
-						route not found
-				%td
-					-if f.route
-						=f.route.grade.name
-				
-		%tr
-		- if current_user.id == @user.id
-			=link_to "(add a new attempt)", new_attempt_path
-
+		%a{name: "charts"}
+		%h3{"data-magellan-destination" => "charts"} Charts
+		.panel
 			
+			
+			= pie_chart(@grade_names)
+			%p
+				grade of routes climbed
+			
+			
+			= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
+			%p
+				number of routes climbed this week
+			
+
+				
 
 
