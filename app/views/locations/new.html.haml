@@ -1,6 +1,3 @@
 = form_for @new_location, url: locations_path, method: :post do |f|
-	address
-	= f.text_area :address
-	= f.submit
+	= render "locations", f: f
 	
-

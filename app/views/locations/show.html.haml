@@ -1,1 +1,82 @@
-= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}"
+
+%br
+.row
+	
+	.large-8.columns
+		%ul.tabs{"data-tab" => ""}
+			%li.tab-title.active
+				%a{href: "#panel2-1"} About
+			%li.tab-title
+				%a{href: "#panel2-2"} Routes
+		
+
+
+		.tabs-content
+			#panel2-1.content.active
+				= @location.description
+			#panel2-2.content
+				
+			
+
+				%br
+				%table
+					%th name
+					%th grade
+
+					-@location.routes.each do |r|
+						%tr
+							%td
+								-if r.name
+									= r.name
+							%td
+								= r.grade.name
+							%td
+								= link_to "view", route_path(r) 
+								%br
+
+
+		%h5 Comments
+		
+		- @location.comments.each do |f|
+			-if f.user
+				.div{class:"label"}
+					= f.user.user_name
+				says:
+				%br
+				= f.content
+				%hr
+		%h6 Add a comment:
+		= form_for @new_comment, url: comments_path, method: :post do |f|
+			= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
+			= f.hidden_field :commentable_type, value: @new_comment.commentable_type
+			= f.hidden_field :user_id, :value => current_user.id
+			comment:
+			%br
+			= f.text_area :content
+			= f.submit "submit", class: "button"
+			
+
+				
+			
+				
+			
+	/ Sidebar
+	.large-4.columns
+		
+		
+		%h3 
+			= @location.name
+			%br
+			= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=12&markers=#{@location.latitude}%2C#{@location.longitude}"
+			
+			
+
+
+		%p 
+			=link_to "edit| ", edit_location_path(@location.id)
+			=link_to " |delete" , location_path, :method => "delete"
+
+	
+
+
+			

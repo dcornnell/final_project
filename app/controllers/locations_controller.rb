@@ -2,9 +2,11 @@ class LocationsController < ApplicationController
 	
 	def index
 		if params[:search].present?
-			 @locations = Location.near(params[:search], 20, order: 'distance')	
+			 @locations = Location.near(params[:search], 20, order: 'distance')
+			 @all = false
 		else 
 			@locations = Location.all
+			@all = true
 		end
 	end
 
@@ -23,6 +25,7 @@ class LocationsController < ApplicationController
 
 	def show
 		@location = Location.find(params[:id])
+		@new_comment = @location.comments.build
 	end
 
 	def edit

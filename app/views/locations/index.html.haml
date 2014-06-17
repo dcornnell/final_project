@@ -1,12 +1,33 @@
-%h1 locations
-= form_tag locations_path, :method => :get do
-	%p
-		= text_field_tag :search, params[:search]
-		= submit_tag "Search Near", :name => nil
+%br
+.row
+	.large-11.columns	
+		%h1 Locations
+		= form_tag locations_path, :method => :get do
+			%p
+				= text_field_tag :search, params[:search]
+				= submit_tag "Search Near", :name => nil, class:"button"
+
+		%table
+			%th name
+			%th address
+			%th camping
+			%th rock type
+			- if @all == false
+				%th distance
+			-@locations.each do |l|
+				%tr
+					%td
+						= link_to "#{l.name}" , location_path(l)
+					%td
+						= l.address
+					%td
+						= l.camping
+					%td
+						= l.rock_type
+					%td	
+						- if @all == false
+							= l.distance.round(2)
+
+			%br
 
 
--@locations.each do |l|
-	= l.address
-	= l.distance.round(2) 
-	miles
-	%br

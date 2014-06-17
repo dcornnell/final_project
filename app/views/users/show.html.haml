@@ -2,6 +2,7 @@
 .row
 	
 	.large-9.columns
+
 		%ul.tabs{"data-tab" => ""}
 			%li.tab-title.active
 				%a{href: "#panel2-1"} About
@@ -66,13 +67,13 @@
 						%td
 							=  @user.attempts.sum(:attempt_score)
 
-
-				= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
+				
 
 				
 
-				= pie_chart(@grade_names)
+				= pie_chart(@grade_names , width: "500px")
 
+				= line_chart @user.attempts.group_by_day(:date_attempted , range: 1.weeks.ago.midnight..Time.now).count
 				
 			
 				
