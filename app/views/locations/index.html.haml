@@ -6,9 +6,14 @@
 			= link_to "add new location" , new_location_path
 		%br
 		= form_tag locations_path, :method => :get do
-			%p
+			%fieldset
+				%legend 
+					Search for locations near:
+				%label location
 				= text_field_tag :search, params[:search]
-				= submit_tag "Search Near", :name => nil, class:"button"
+				%label distance from: (in miles)
+				= text_field_tag :distance, params[:distance]
+				= submit_tag "Search", :name => nil, class:"button"
 
 		%table
 			%th name
@@ -30,7 +35,6 @@
 					%td	
 						- if @all == false
 							= l.distance.round(2)
-
 			%br
 
 

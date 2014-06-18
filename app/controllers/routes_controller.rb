@@ -8,10 +8,12 @@ class RoutesController < ApplicationController
 		@route = Route.find(params[:id])
 		@new_comment = @route.comments.build
 		@new_tag = @route.tags.build
-		if @route.ratings.where('user_id = ?', current_user.id)
-			@new_rating = @route.ratings.build
-		else
-			@rating = @route.ratings.where('user_id = ?', current_user.id)
+		if current_user.present?
+			if @route.ratings.where('user_id = ?', current_user.id)
+				@new_rating = @route.ratings.build
+			else
+				@rating = @route.ratings.where('user_id = ?', current_user.id)
+			end
 		end
 	end
 

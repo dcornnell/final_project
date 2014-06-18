@@ -1,24 +1,28 @@
-First Name:
-=f.text_field :first_name
-%br
-Last Name: 
-=f.text_field :last_name
-%br
-Email:
+.row
+	.large-6.columns
+		%label First Name:
+		=f.text_field :first_name
+	.large-6.columns
+		%label Last Name: 
+		=f.text_field :last_name
+.row
+%label Email:
 =f.text_field :email
-User Name
+%label User Name:
 =f.text_field :user_name
-%br
-Descirption
+%label Descirption
 =f.text_area :description
-Password:
-=f.password_field :password
-Password: Confrimation:
-=f.password_field :password_confirmation
-
-%br
-Profile Pic
-=f.file_field :avatar
-
-=f.submit "Submit", class:"button"
+.row
+	.large-6.columns
+		%label Password:
+		=f.password_field :password
+	.large-6.columns
+		%label Password Confirmation:
+		=f.password_field :password_confirmation
+.row
+	.large-6.columns
+		%label Profile Pic
+		=f.file_field :avatar
+	.large-2.columns
+		=f.submit "Submit", class:"button"
 
