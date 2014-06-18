@@ -17,7 +17,7 @@
 			%th month
 			%th year
 			%th total
-			%tr
+			%tr 
 				%td
 					= @user.attempts.this_day.sum(:attempt_score)
 				%td
@@ -28,6 +28,8 @@
 					= @user.attempts.this_year.sum(:attempt_score)
 				%td
 					=  @user.attempts.sum(:attempt_score)
+			
+
 
 		
 
@@ -96,7 +98,7 @@
 								=f.flash
 		
 		%a{name: "charts"}
-		%h3{"data-magellan-destination" => "charts"} Charts
+		%h3{"data-magellan-destination" => "charts"} Charts & Info
 		.panel
 			
 			
