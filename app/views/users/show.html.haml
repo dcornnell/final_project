@@ -33,7 +33,7 @@
 
 
 		%h2	Following
-		-if current_user == @user.id
+		-if current_user.id == @user.id
 			=link_to "(add friends)" , users_path
 
 
