@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
 		if @new_rating.save
 			redirect_to :back
 		else
-			redirect_to :back, notice: "failed to add this rating"
+			redirect_to :back, notice: "you have already rated this route"
 		end
 	end
 
