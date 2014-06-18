@@ -70,18 +70,17 @@
 				%table
 					%th date
 					%th score
-					%th notes
 					%th route
 					%th grade
 					%th completed
+					%th flash
 					- @user.attempts.last(10).reverse.each do |f|
 						%tr
 							%td
 								=formatted_date(f.date_attempted)
 							%td
 								=f.attempt_score
-							%td
-								=f.notes
+							
 							%td
 								-if f.route
 									=link_to "#{f.route.name}", route_path(f.route.id)
@@ -93,6 +92,8 @@
 									=f.route.grade.name
 							%td
 								=f.completed
+							%td
+								=f.flash
 		
 		%a{name: "charts"}
 		%h3{"data-magellan-destination" => "charts"} Charts
