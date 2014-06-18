@@ -7,15 +7,5 @@ $ ->
     $('#attempts').dataTable()
 
 	
-	checkbox = document.getElementById("completed")
-	flash_div = document.getElementById("flash")
-	showHiddenDiv = ->
-  	if checkbox.checked
-    	flash_div.style["display"] = "block"
-  	else
-    	flash_div.style["display"] = "none"
-  	return
 
-	checkbox.onclick = showHiddenDiv
-	showHiddenDiv()
 
