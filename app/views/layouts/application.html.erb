@@ -43,10 +43,18 @@
           <li><a href="/routes">Routes</a></li>
           <li><a href="/users">Users</a></li>
           <li><a href="/locations">Locations</a></li>
-          <li><a href="/attempts">My Attempts</a></li>
-          <% if current_user %>
+          
+
+          <% if current_user.present? %>
+            <li><a href="/attempts">My Attempts</a></li>
             <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %><li>
+            <% if current_user.role_id == 2 %>
+              <li><label>admin<label></li>
+              <li><a href="/locations/new">Add Location</a></li>
+
+            <% end %>
           <% end %>
+
         </ul>
       </li>
     </ul>

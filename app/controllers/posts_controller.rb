@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 	def create
 		@new_post = Post.new(post_params)
 		if @new_post.save
-			redirect_to :back
+			redirect_to posts_path
 			
 		else
 			redirect_to :back

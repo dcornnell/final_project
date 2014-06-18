@@ -71,10 +71,10 @@
 			
 			
 
-
-		%p 
-			=link_to "edit| ", edit_location_path(@location.id)
-			=link_to " |delete" , location_path, :method => "delete"
+		-if current_user.role_id == 2
+			%p 
+				=link_to "edit| ", edit_location_path(@location.id)
+				=link_to " |delete" , location_path, :method => "delete"
 
 	
 
