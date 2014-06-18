@@ -24,15 +24,18 @@
 				%br
 				= f.content
 				%hr
-		%h6 Add a comment:
-		= form_for @new_comment, url: comments_path, method: :post do |f|
-			= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
-			= f.hidden_field :commentable_type, value: @new_comment.commentable_type
-			= f.hidden_field :user_id, :value => current_user.id
-			comment:
-			%br
-			= f.text_area :content
-			= f.submit "submit", class: "button"
+		-if current_user.present?
+			%h6 Add a comment:
+			= form_for @new_comment, url: comments_path, method: :post do |f|
+				= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
+				= f.hidden_field :commentable_type, value: @new_comment.commentable_type
+				= f.hidden_field :user_id, :value => current_user.id
+				comment:
+				%br
+				= f.text_area :content
+				= f.submit "submit", class: "button"
+		-else
+			=link_to "Login to add a comment", login_path
 	.large-3.columns
 		%h3 About
 
@@ -49,20 +52,20 @@
 
 		=@route.ratings.average(:rating)
 	
-		
-		- if @route.ratings.where('user_id = ?', current_user.id) == 1
-			you already rated this!
-			/ = form_for @new_rating, url: rating_path do |f|
-			/ 	= f.hidden_field :user_id, :value => current_user.id
-			/ 	= f.hidden_field :route_id, :value => @route.id
-			/ 	= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
-			/ 	= f.submit "rate" , class:"button"
-		- else
-			= form_for @new_rating, url: ratings_path do |f|
-				= f.hidden_field :user_id, :value => current_user.id
-				= f.hidden_field :route_id, :value => @route.id
-				= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
-				= f.submit "rate" , class:"button"
+		-if current_user.present?
+			- if @route.ratings.where('user_id = ?', current_user.id) == 1
+				you already rated this!
+				/ = form_for @new_rating, url: rating_path do |f|
+				/ 	= f.hidden_field :user_id, :value => current_user.id
+				/ 	= f.hidden_field :route_id, :value => @route.id
+				/ 	= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+				/ 	= f.submit "rate" , class:"button"
+			- else
+				= form_for @new_rating, url: ratings_path do |f|
+					= f.hidden_field :user_id, :value => current_user.id
+					= f.hidden_field :route_id, :value => @route.id
+					= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+					= f.submit "rate" , class:"button"
 				
 		%br
 		

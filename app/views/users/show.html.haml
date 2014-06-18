@@ -17,7 +17,7 @@
 			%th month
 			%th year
 			%th total
-			%tr
+			%tr 
 				%td
 					= @user.attempts.this_day.sum(:attempt_score)
 				%td
@@ -28,6 +28,8 @@
 					= @user.attempts.this_year.sum(:attempt_score)
 				%td
 					=  @user.attempts.sum(:attempt_score)
+			
+
 
 		
 
@@ -70,18 +72,17 @@
 				%table
 					%th date
 					%th score
-					%th notes
 					%th route
 					%th grade
 					%th completed
+					%th flash
 					- @user.attempts.last(10).reverse.each do |f|
 						%tr
 							%td
 								=formatted_date(f.date_attempted)
 							%td
 								=f.attempt_score
-							%td
-								=f.notes
+							
 							%td
 								-if f.route
 									=link_to "#{f.route.name}", route_path(f.route.id)
@@ -93,9 +94,11 @@
 									=f.route.grade.name
 							%td
 								=f.completed
+							%td
+								=f.flash
 		
 		%a{name: "charts"}
-		%h3{"data-magellan-destination" => "charts"} Charts
+		%h3{"data-magellan-destination" => "charts"} Charts & Info
 		.panel
 			
 			

@@ -1,2 +1,7 @@
-=form_for @user, url: user_path do |f|
-	= render "users", f: f
+.row
+	.large-12-column
+		=form_for @user, url: user_path do |f|
+			%fieldset
+				%legend 
+					edit profile
+				= render "users", f: f

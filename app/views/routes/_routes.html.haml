@@ -1,17 +1,21 @@
-Route Name
-=f.text_field :name
-%br
-Grade: V
-=f.select :grade_id , Grade.all.collect { |g| [g.name, g.id]} 
-%br
-Info:
-%br
-=f.text_area :info
-%br
-location
-%br
-= f.select :location_id, Location.all.collect {|u| [u.name, u.id]}
-=f.submit
+.row
+	.large-6.columns
+		%label Route Name:
+		=f.text_field :name
+	.large-2.columns
+		%label Grade:
+		=f.select :grade_id , Grade.all.collect { |g| [g.name, g.id]} 
+	.large-4.columns	
+		%label Location:
+		= f.select :location_id, Location.all.collect {|u| [u.name, u.id]}
+.row
+	.large-12.columns
+		%label Info:
+		=f.text_area :info
+.row		
+	.large-10.columns
+	.large-2.columns
+		=f.submit "Submit", class:"button"
 
 
 
