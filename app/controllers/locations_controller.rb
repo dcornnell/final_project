@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
 	load_and_authorize_resource param_method: :locations_params
 	def index
 		if params[:search].present?
-			 @locations = Location.near(params[:search], 20, order: 'distance')
+			 @locations = Location.near(params[:search], params[:distance], order: 'distance')
 			 @all = false
 		else 
 			@locations = Location.all

@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
     medium: '300x300>'
   }, :default_url => "assets/default.png"
 
+
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 

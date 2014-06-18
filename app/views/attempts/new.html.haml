@@ -1,21 +1,32 @@
-= form_for @new_attempt, url: attempts_path do |f|
-	
-	
-	= f.hidden_field :user_id, :value => session[:user_id]
-	= f.label :date_attempted
-	= f.date_field :date_attempted, :value => Date.today
-	Route
-	= f.select :route_id, Route.all.collect {|u| ["#{u.name}, #{u.grade.name}", u.id]}
+.row
+	.large-12.columns
+		= form_for @new_attempt, url: attempts_path do |f|
+			%fieldset
+				%legend
+					Add a new attempt
+				= f.hidden_field :user_id, :value => session[:user_id]
+				.row
+					.large-6.columns
+						%label Date attempted:
+						= f.date_field :date_attempted, :value => Date.today
+					.large-6.columns
+						%label Route
+						= f.select :route_id, Route.all.collect {|u| ["#{u.name}, #{u.grade.name}", u.id]}
+				%label Notes:
+				=f.text_area :notes
+				.row
+					.large-2.columns
+						
+						%label Completed:
+						=f.check_box :completed, id:"completed"
+					.large-2.columns
+						#flash{style: "display:none;"}
+							%label Flash:
+							=f.check_box :flash
+					.large-3.columns
+						=f.submit "Add Attempt", class:"button"
 
-	%br
-	=f.label :flash
-	=f.check_box :flash
-	%br
-	=f.label :completed
-	=f.check_box :completed
-	%br
 
-	=f.label :notes
-	=f.text_area :notes
 
-	=f.submit
+
+
