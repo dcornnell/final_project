@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     thumb: '50x50>',
     square: '200x200#',
     medium: '300x300>'
-  }, :default_url => "assets/default.png"
+  }, :default_url => "default.png"
 
 
   # Validate the attached image is image/jpg, image/png, etc
