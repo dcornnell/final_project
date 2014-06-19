@@ -1,2 +1,7 @@
-=form_for @route, url: route_path do |f|
-	= render "routes", f: f
+.row
+	.large-12.columns
+		=form_for @route, url: route_path do |f|
+			%fieldset
+				%legend
+					Edit route
+				= render "routes", f: f
