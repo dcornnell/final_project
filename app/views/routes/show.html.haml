@@ -1,90 +1,96 @@
-
-%br
-
 .row
 	.large-9.columns
 		%h1 
 			= @route.name
-		= link_to "edit | ", edit_route_path
-		= link_to "delete", route_path, :method => "delete"
-		%hr
-		%h4 
-			= @route.info
-		
-	
-		
-		%hr
-		%h5 Comments
-		
-		- @route.comments.each do |f|
-			-if f.user
-				.div{class:"label"}
-					= f.user.user_name
-				says:
-				%br
-				= f.content
-				%hr
-		-if current_user.present?
-			%h6 Add a comment:
-			= form_for @new_comment, url: comments_path, method: :post do |f|
-				= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
-				= f.hidden_field :commentable_type, value: @new_comment.commentable_type
-				= f.hidden_field :user_id, :value => current_user.id
-				comment:
-				%br
-				= f.text_area :content
-				= f.submit "submit", class: "button"
-		-else
-			=link_to "Login to add a comment", login_path
-	.large-3.columns
-		%h3 About
+		-if current_user
+			-if current_user.role_id == 2
 
-
-		%p
-		%h4
-			grade:
-			= @route.grade.name
-		
+				= link_to "edit", edit_route_path
 		
 		%br
-		%h4 
-		rating:
+		%br
+		.panel
+			-if @route.location
+				%p
+					This route is located at:
+					=link_to "#{@route.location.name}", location_path(@route.location) 
+				%p
+					= @route.info
 
-		=@route.ratings.average(:rating)
-	
-		-if current_user.present?
-			- if @route.ratings.where('user_id = ?', current_user.id) == 1
-				you already rated this!
-				/ = form_for @new_rating, url: rating_path do |f|
-				/ 	= f.hidden_field :user_id, :value => current_user.id
-				/ 	= f.hidden_field :route_id, :value => @route.id
-				/ 	= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
-				/ 	= f.submit "rate" , class:"button"
-			- else
-				= form_for @new_rating, url: ratings_path do |f|
+		
+		%h3 Comments
+		.panel
+		
+			- @route.comments.each do |f|
+				-if f.user
+					.div{class:"label"}
+						= f.user.user_name
+					says:
+					%br
+					= f.content
+					%hr
+			-if current_user.present?
+				%h6 Add a comment:
+				= form_for @new_comment, url: comments_path, method: :post do |f|
+					= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
+					= f.hidden_field :commentable_type, value: @new_comment.commentable_type
 					= f.hidden_field :user_id, :value => current_user.id
-					= f.hidden_field :route_id, :value => @route.id
-					= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
-					= f.submit "rate" , class:"button"
+					comment:
+					%br
+					= f.text_area :content
+					= f.submit "submit", class: "button tiny"
+			-else
+				=link_to "Login to add a comment", login_path
+	.large-3.columns
+		%br
+		%br
+		.row
+			.panel
+				%h3
+					Grade:
+					= @route.grade.name
 				
-		%br
-		
 			
+				
+				%h3
+					Rating:
+					=@route.ratings.average(:rating)
 
+				%h3
+					Tags:
+					%br
+					-@route.tags.each do |f|
+						-if f.name
+							.label
+								=f.name
+			.panel
+				-if current_user.present?
+					- if @route.ratings.where('user_id = ?', current_user.id) == 1
+						you already rated this!
+						/ = form_for @new_rating, url: rating_path do |f|
+						/ 	= f.hidden_field :user_id, :value => current_user.id
+						/ 	= f.hidden_field :route_id, :value => @route.id
+						/ 	= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]]) 
+						/ 	= f.submit "rate" , class:"button"
+					- else
+						= form_for @new_rating, url: ratings_path do |f|
+							
+							= f.hidden_field :user_id, :value => current_user.id
+							= f.hidden_field :route_id, :value => @route.id
+							.large-6.columns
+								= f.select :rating, options_for_select([[0, 0],[1, 1],[2,2],[3,3],[4,4],[5,5]])
+							.large-6.columns 
+								= f.submit "rate" , class: "button tiny"
+						
+				
+				
+		
 
-		%br
-		%p
-			User tagged this route as:
-			-@route.tags.each do |f|
-				-if f.name
-					.label
-						=f.name
-
-		= form_for @new_tag, url: tags_path, method: :post do |f|
-			= hidden_field_tag :route_id, @route.id
-			add tag:
-			%br
-			= f.text_area :name
-			= f.submit "submit" , class: "button tiny"
-			%br
+				= form_for @new_tag, url: tags_path, method: :post do |f|
+					= hidden_field_tag :route_id, @route.id
+					add tag:
+					%br
+					= f.text_field :name
+					= f.submit "submit" , class: "button tiny"
+					%br
 

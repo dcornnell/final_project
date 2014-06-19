@@ -2,10 +2,12 @@
 	.large-8.columns
 		%h1 
 			= @location.name
-		-if current_user.role_id == 2
-			%p 
-				=link_to "edit| ", edit_location_path(@location.id)
-				=link_to " |delete" , location_path, :method => "delete"
+		-if current_user
+			-if current_user.role_id == 2
+				%p 
+					=link_to "edit| ", edit_location_path(@location.id)
+					=link_to " |delete" , location_path, :method => "delete"
+					
 		%ul.tabs{"data-tab" => ""}
 			%li.tab-title.active
 				%a{href: "#panel2-1"} About
@@ -55,15 +57,18 @@
 					%br
 					= f.content
 					%hr
-			%h6 Add a comment:
-			= form_for @new_comment, url: comments_path, method: :post do |f|
-				= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
-				= f.hidden_field :commentable_type, value: @new_comment.commentable_type
-				= f.hidden_field :user_id, :value => current_user.id
-				comment:
-				%br
-				= f.text_area :content
-				= f.submit "submit", class: "button"
+			- if current_user
+				%h6 Add a comment:
+				= form_for @new_comment, url: comments_path, method: :post do |f|
+					= f.hidden_field :commentable_id, value: @new_comment.commentable_id 
+					= f.hidden_field :commentable_type, value: @new_comment.commentable_type
+					= f.hidden_field :user_id, :value => current_user.id
+					comment:
+					%br
+					= f.text_area :content
+					= f.submit "submit", class: "button"
+			- else
+				= link_to "login to comment", login_path
 			
 
 				
