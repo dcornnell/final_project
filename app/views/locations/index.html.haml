@@ -2,10 +2,11 @@
 .row
 	.large-12.columns	
 		%h1 Locations
-		-if current_user.role_id == 2
-			%p
-				= link_to "add a location" , new_location_path
-			%br
+		-if current_user
+			-if current_user.role_id == 2
+				%p
+					= link_to "add a location" , new_location_path
+				%br
 		= form_tag locations_path, :method => :get do
 			%fieldset
 				%legend 
