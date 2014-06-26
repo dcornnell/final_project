@@ -17,3 +17,4 @@
 
 # Ignore secret file
 /config/secrets.yml
+/config/environments/development.rb
