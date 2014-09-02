@@ -14,7 +14,9 @@
 				- @users.each do |u|
 					%tr
 						%td
-							= image_tag u.avatar.url ,:style => "max-width: 50px"
+							- binding.pry
+							/ devise breaks everything!
+							/ = image_tag u.avatar.url ,:style => "max-width: 50px"
 						%td	
 							=link_to "#{u.user_name}", user_path(u)
 						%td

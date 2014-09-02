@@ -7,6 +7,7 @@ class Ability
       if user.role_id == 2
         can :manage, [Location, Attempt, Grade, Role, Route, User, Comment, Tag, Post]
       else
+        can :manage , :all
         can [:read], [Location, Post, Attempt, Grade, Route, User, Comment, Tag]
         can [:create], [Attempt, Route, User, Comment, Tag]
         can [:edit, :update], [Attempt, User, Comment, Tag]  

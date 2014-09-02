@@ -28,8 +28,8 @@ gem 'aws-sdk'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'geocoder'
-
-
+gem 'devise'
+gem "erb2haml", :group => :development
 
 
 
@@ -39,6 +39,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'pry-rails'
 end
 
 
