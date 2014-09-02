@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :results
     end
   end
-  resources :sessions, only: [:new, :create, :destroy]
+  
   resources :routes
   resources :attempts
   resources :comments
