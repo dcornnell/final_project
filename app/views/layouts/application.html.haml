@@ -38,7 +38,7 @@
               - if current_user.present?
                 %li
                   %a{:href => "/attempts"} My Attempts
-                %li= link_to "Edit Profile", edit_user_path(current_user.id)
+                %li= link_to "Edit Profile", edit_user_registration_path(current_user.id)
                 %li
                   - if current_user.role_id == 2
                     %li
