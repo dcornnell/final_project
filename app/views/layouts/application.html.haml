@@ -51,9 +51,9 @@
         %ul.left
           %li
             - if current_user
-              = link_to "Log out", logout_path
+              = link_to "Log out", destroy_user_session_path, :method => :delete
             - else
-              = link_to "Log in", login_path
+              = link_to "Log in", new_user_session_path 
     = javascript_include_tag "//www.google.com/jsapi", "chartkick"
     - if flash[:notice]
       .notice= flash[:notice]

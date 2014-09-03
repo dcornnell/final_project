@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   devise_for :users
   resources :users do
@@ -16,8 +17,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :locations
   root 'posts#index'
-  get "login" => "sessions#new"
-  get "logout" => "sessions#destroy"
+ 
 
   get "auth/facebook" => "auth#facebook"
   get "/auth/facebook/callback" => "auth#facebook"
