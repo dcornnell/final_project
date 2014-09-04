@@ -7,6 +7,21 @@ class ApplicationController < ActionController::Base
   
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  # the next three methods makes devise login possible from non devise /view
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  helper_method :resource, :resource_name, :devise_mapping
+
   protected
 
   def configure_devise_permitted_parameters
@@ -22,6 +37,7 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
 
   #if a user tries to access some place they should
   # rescue_from CanCan::AccessDenied do |exception|

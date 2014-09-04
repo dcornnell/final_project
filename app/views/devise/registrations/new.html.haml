@@ -1,39 +1,45 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-	= devise_error_messages!
-	%div
-		= f.label :email
-		%br/
-		= f.email_field :email, autofocus: true
-	%div
-		= f.label :password
-		- if @validatable
-			%i
-				(#{@minimum_password_length} characters minimum)
-		%br/
-		= f.password_field :password, autocomplete: "off"
-	%div
-		= f.label :password_confirmation
-		%br/
-		= f.password_field :password_confirmation, autocomplete: "off"
-	%div
-		=f.label :user_name
-		%br
-		=f.text_field :user_name
-	%div
-		%label First Name:
-		=f.text_field :first_name
-	%div
-		%label Last Name:
-		=f.text_field :last_name
-	%div
-		%label Description
-		=f.text_area :description
-	%div
-		%label Avatar
-		=f.file_field :avatar
-	%div= f.submit "Sign up"
-= render "devise/shared/links"
+.row
+	.large-12-column
+
+		= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+			%fieldset
+				%legend
+					Sign up
+
+				= devise_error_messages!
+				.large-12.columns
+					= f.label :email
+					%br/
+					= f.email_field :email, autofocus: true
+				.large-6.columns
+					= f.label :password
+					- if @validatable
+						%i
+							(#{@minimum_password_length} characters minimum)
+					%br/
+					= f.password_field :password, autocomplete: "off"
+				.large-6.columns
+					= f.label :password_confirmation
+					%br/
+					= f.password_field :password_confirmation, autocomplete: "off"
+				.large-12.columns
+					=f.label :user_name
+					%br
+					=f.text_field :user_name
+				.large-6.columns
+					%label First Name:
+					=f.text_field :first_name
+				.large-6.columns
+					%label Last Name:
+					=f.text_field :last_name
+				.large-12.columns
+					%label Description
+					=f.text_area :description
+				.large-6.columns
+					%label Avatar
+					=f.file_field :avatar
+				.large-6.columns= f.submit "Sign up", class:"button"
+			= render "devise/shared/links"
 
 
 

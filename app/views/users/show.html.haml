@@ -44,7 +44,7 @@
 			-@user.friends.each do |f|
 
 				%span.has-tip{"data-tooltip" => "", title: "#{f.user_name}"} 
-					/ = link_to "#{image_tag(f.avatar.url(:thumb), style:"max-width: 50px")}".html_safe, user_path(f)
+					= link_to "#{image_tag(f.avatar.url(:thumb), style:"max-width: 50px")}".html_safe, user_path(f)
 
 	.large-8.columns
 		%div{"data-magellan-expedition" => "fixed"}

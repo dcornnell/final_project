@@ -1,7 +1,0 @@
-.row
-	.large-12-column
-		=form_for @new_user, url: users_path, method: :post do |f|
-			%fieldset
-				%legend 
-					new user
-				=render "users", f: f
