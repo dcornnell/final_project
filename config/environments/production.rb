@@ -81,16 +81,31 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   # mailer stuff
-  config.action_mailer.default_url_options = = { :host => 'yoursite.herokuapp.com'}
+  config.action_mailer.default_url_options = = { :host => 'fierce-brook-8425.herokuapp.com'}
+  Rails.application.routes.default_url_options[:host] = 'fierce-brook-8425.herokuapp.com'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: ENV["GMAIL_DOMAIN"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+  }
   
   #image upload stuff using paper clip gem
   config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
-    :bucket => 'rock_climber_dan',
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'rock_climber_dan',
       :access_key_id => Rails.application.secrets.aws_key,
-    :secret_access_key => Rails.application.secrets.aws_secret
+      :secret_access_key => Rails.application.secrets.aws_secret
+    }
   }
-}
 
 end
