@@ -3,3 +3,5 @@ class AddDescriptionToUsersTable < ActiveRecord::Migration
   	add_column :users, :description, :text
   end
 end
+
+
