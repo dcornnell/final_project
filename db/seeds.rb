@@ -45,3 +45,7 @@ Grade.create(name: 'V11+' , score: 123, route_type: "boulder")
 Grade.create(name: 'V12-' , score: 126, route_type: "boulder")
 Grade.create(name: 'V12' , score: 130, route_type: "boulder")
 Grade.create(name: 'V12+' , score: 133, route_type: "boulder")
+
+
+Role.create(name: 'admin')
+Role.create(name: 'user')
