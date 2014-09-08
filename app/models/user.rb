@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
- 	has_many :posts
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 	has_many :friendships
 	has_many :friends, :through => :friendships
 	belongs_to :role
@@ -55,9 +55,11 @@ class User < ActiveRecord::Base
     	end
     	user.first_name = auth.info.first_name
     	user.last_name = auth.info.last_name
-    	user.facebook_image = auth.info.image
-    	user.oauth_token = auth.credentials.token
-    	user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    	
+      # FIXME these were working before devise was implemented need to be fixed
+      # user.facebook_image = auth.info.image
+    	# user.oauth_token = auth.credentials.token
+    	# user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     	if auth.extra.email
     		user.email = auth.extra.email
     	else
